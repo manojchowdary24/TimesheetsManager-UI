@@ -28,7 +28,7 @@ const App: React.FC = () => {
     return <div>Loading...</div>;
   }
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={window.location.pathname || ''}>
       <ApolloProvider client={client}>
         <CssBaseline />
         <Application />

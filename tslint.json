@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-standard",
+    "tslint-config-prettier"
+  ],
+  "linterOptions": {
+    "exclude": []
+  },
+  "rules": {
+    "interface-name": [true, "never-prefix"],
+    "member-access": [true, "no-public"],
+    "new-parens": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": false,
+    "no-console": true,
+    "no-empty": false,
+    "no-shadowed-variable": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "member-ordering": false,
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "no-extra-boolean-cast": false,
+    "radix": false,
+    "max-line-length": {
+      "options": [80]
+    }
+  },
+  "rulesDirectory": []
+}

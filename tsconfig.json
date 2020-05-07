@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "typeRoots": [
+            "node_modules/@types",
+            "src/@types"
+        ]
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],
+    "exclude": [
+        "src/**/*.story.*",
+        "src/**/*.test.*",
+        "src/**/__tests__/*"
+    ]
+}

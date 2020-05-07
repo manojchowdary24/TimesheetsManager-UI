@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "homepage":"https://manojchowdary24.github.io/TimesheetsManager-UI"
+  "homepage": "https://manojchowdary24.github.io/TimesheetsManager-UI/",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@babel/core": "^7.7.5",

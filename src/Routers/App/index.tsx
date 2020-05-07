@@ -9,13 +9,13 @@ import RequestAccess from "../../containers/RequestAccess";
 
 const AppRouter: React.FC = () => {
   const { data: { isAuthenicated = false } = {}, client } = useQuery(
-    IsAuthenticated,
+    IsAuthenticated
   );
   return isAuthenicated ? (
     <Switch>
       <Route
         exact
-        path="/"
+        path="/TimesheetsManager-UI/"
         component={() => <App signOut={() => client.resetStore()} />}
       />
     </Switch>
@@ -23,7 +23,7 @@ const AppRouter: React.FC = () => {
     <Switch>
       <Route
         exact
-        path="/"
+        path="/TimesheetsManager-UI/"
         component={({ history }: RouteComponentProps) => (
           <Login
             navigateToForgotPassword={() =>

@@ -6,11 +6,9 @@ module.exports = {
   output: {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "build"),
-    publicPath: "/",
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: "./build",
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -15,7 +15,7 @@ const AppRouter: React.FC = () => {
     <Switch>
       <Route
         exact
-        path="/TimesheetsManager-UI/"
+        path="/"
         component={() => <App signOut={() => client.resetStore()} />}
       />
     </Switch>
@@ -23,7 +23,7 @@ const AppRouter: React.FC = () => {
     <Switch>
       <Route
         exact
-        path="/TimesheetsManager-UI/"
+        path="/"
         component={({ history }: RouteComponentProps) => (
           <Login
             navigateToForgotPassword={() =>

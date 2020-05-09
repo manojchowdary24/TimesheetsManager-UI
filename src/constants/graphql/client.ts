@@ -7,14 +7,12 @@ const { typeDefs, defaults: localState, resolvers } = clientState;
 
 const uri = process.env.API_URI;
 
-console.log(uri);
-
 const setLocalState = () => {
   client.cache.writeData({ data: localState });
 };
 
 const restLink = new RestLink({
-  uri
+  uri: "https://timesheets-manager.herokuapp.com"
 });
 
 const client = new ApolloClient({

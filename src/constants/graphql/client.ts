@@ -5,17 +5,23 @@ import clientState from "./resolvers";
 
 const { typeDefs, defaults: localState, resolvers } = clientState;
 
+const uri = process.env.API_URI;
+
+console.log(uri);
+
 const setLocalState = () => {
   client.cache.writeData({ data: localState });
 };
 
-const restLink = new RestLink({ uri: "http://localhost:8080" });
+const restLink = new RestLink({
+  uri
+});
 
 const client = new ApolloClient({
   link: restLink,
   cache: new InMemoryCache(),
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 client.onResetStore(async () => {

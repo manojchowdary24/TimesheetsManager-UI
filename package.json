@@ -36,7 +36,7 @@
     "build:prod": "API_URL=https://timesheets-manager.herokuapp.com/ webpack --config webpack.config.js --mode production",
     "lint": "tslint 'src/**/*.{ts,tsx,js}'",
     "test": "jest",
-    "predeploy:prod": "npm run build",
+    "predeploy:prod": "npm run build:prod",
     "deploy:prod": "gh-pages -d build"
   },
   "devDependencies": {

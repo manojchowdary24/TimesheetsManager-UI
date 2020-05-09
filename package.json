@@ -33,11 +33,11 @@
   },
   "scripts": {
     "start": "webpack-dev-server --hot --open",
-    "build": "webpack --config webpack.config.js --mode production",
+    "build:prod": "API_URL=https://timesheets-manager.herokuapp.com/ webpack --config webpack.config.js --mode production",
     "lint": "tslint 'src/**/*.{ts,tsx,js}'",
     "test": "jest",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy:prod": "npm run build",
+    "deploy:prod": "gh-pages -d build"
   },
   "devDependencies": {
     "@babel/preset-typescript": "7.3.3",

@@ -12,7 +12,7 @@ const setLocalState = () => {
 };
 
 const restLink = new RestLink({
-  uri: "https://timesheets-manager.herokuapp.com"
+  uri
 });
 
 const client = new ApolloClient({

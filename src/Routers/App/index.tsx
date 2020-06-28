@@ -38,7 +38,15 @@ const AppRouter: React.FC = () => {
       />
       <Route exact path="/forgot-password" component={ForgotPassword} />
       <Route exact path="/request-access" component={RequestAccess} />
-      <Route exact path="/update-password" component={UpdatePassword} />
+      <Route
+        exact
+        path="/update-password"
+        component={({ history }: RouteComponentProps) => (
+          <UpdatePassword
+            navigateToLogin={() => history.push("/TimesheetsManager-UI")}
+          />
+        )}
+      />
     </Switch>
   );
 };

@@ -1,8 +1,12 @@
 import React from "react";
 import UpdatePasswordForm from "../../components/UpdatePassword";
 
-const UpdatePassword: React.FC = () => {
-  return <UpdatePasswordForm />;
+interface Props {
+  navigateToLogin: () => void;
+}
+
+const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
+  return <UpdatePasswordForm navigateToLogin={navigateToLogin} />;
 };
 
 export default UpdatePassword;

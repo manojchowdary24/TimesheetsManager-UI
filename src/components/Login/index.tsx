@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../../components/Form";
 import {
   FormInput,
-  FormInputType,
+  FormInputType
 } from "../../components/Form/utils/validationSchema";
 
 const CONTAINER_STYLES: React.CSSProperties = {
@@ -10,22 +10,22 @@ const CONTAINER_STYLES: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
   height: "100vh",
-  flexDirection: "column",
+  flexDirection: "column"
 };
 
 const LINK_CONTAINER_STYLES: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-evenly",
   width: "25%",
-  marginTop: "1rem",
+  marginTop: "1rem"
 };
 
 const INPUT_STYLES: React.CSSProperties = {
-  width: "100%",
+  width: "100%"
 };
 
 const FORM_STYLES: React.CSSProperties = {
-  width: "20%",
+  width: "20%"
 };
 
 const inputs: FormInput[] = [
@@ -35,6 +35,7 @@ const inputs: FormInput[] = [
     label: "Username",
     name: "username",
     style: INPUT_STYLES,
+    validationType: FormInputType.text
   },
   {
     id: "password",
@@ -42,7 +43,8 @@ const inputs: FormInput[] = [
     label: "Password",
     name: "password",
     style: INPUT_STYLES,
-  },
+    validationType: FormInputType.password
+  }
 ];
 
 interface LoginProps {
@@ -54,7 +56,7 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({
   onSubmit,
   navigateToForgotPassword,
-  navigateToRequestAccess,
+  navigateToRequestAccess
 }) => {
   return (
     <div style={CONTAINER_STYLES}>
@@ -63,7 +65,7 @@ const Login: React.FC<LoginProps> = ({
           type: "submit",
           variant: "contained",
           color: "primary",
-          style: { marginTop: "1rem", width: "100%" },
+          style: { marginTop: "1rem", width: "100%" }
         }}
         formStyles={FORM_STYLES}
         inputs={inputs}

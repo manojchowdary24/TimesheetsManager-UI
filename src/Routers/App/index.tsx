@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 import IsAuthenticated from "../../constants/graphql/queries/isAuthenticated.graphql";
 import ForgotPassword from "../../containers/ForgotPassword";
 import RequestAccess from "../../containers/RequestAccess";
+import UpdatePassword from "../../containers/UpdatePassword";
 
 const AppRouter: React.FC = () => {
   const { data: { isAuthenicated = false } = {}, client } = useQuery(
@@ -37,6 +38,7 @@ const AppRouter: React.FC = () => {
       />
       <Route exact path="/forgot-password" component={ForgotPassword} />
       <Route exact path="/request-access" component={RequestAccess} />
+      <Route exact path="/update-password" component={UpdatePassword} />
     </Switch>
   );
 };

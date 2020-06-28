@@ -1,7 +1,6 @@
 import React from "react";
 import Form from "../Form";
 import { FormInput, FormInputType } from "../Form/utils/validationSchema";
-import Toast from "../Toast";
 
 const CONTAINER_STYLES: React.CSSProperties = {
   display: "flex",
@@ -21,30 +20,32 @@ const FORM_STYLES: React.CSSProperties = {
 
 const inputs: FormInput[] = [
   {
-    id: "email",
-    type: FormInputType.email,
-    validationType: FormInputType.email,
-    label: "Email",
-    name: "emailId",
-    style: INPUT_STYLES
+    id: "token",
+    type: FormInputType.text,
+    label: "Token",
+    name: "token",
+    style: INPUT_STYLES,
+    validationType: FormInputType.text
+  },
+  {
+    id: "password",
+    type: FormInputType.password,
+    label: "Password",
+    name: "password",
+    style: INPUT_STYLES,
+    validationType: FormInputType.password
+  },
+  {
+    id: "passwordConfirm",
+    type: FormInputType.password,
+    label: "Confirm Password",
+    name: "confirm Password",
+    style: INPUT_STYLES,
+    validationType: FormInputType.confirmPassword
   }
 ];
 
-interface ForgotPasswordProps {
-  onSubmit: (data: any) => void;
-  handleCloseToast: () => void;
-  showToast: boolean;
-  toastMessage: string;
-  isError: boolean;
-}
-
-const ForgotPassword: React.FC<ForgotPasswordProps> = ({
-  onSubmit,
-  showToast,
-  toastMessage,
-  isError,
-  handleCloseToast
-}) => {
+const UpdatePassword = () => {
   return (
     <div style={CONTAINER_STYLES}>
       <Form
@@ -56,16 +57,10 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({
         }}
         formStyles={FORM_STYLES}
         inputs={inputs}
-        onSubmit={onSubmit}
-      />
-      <Toast
-        open={showToast}
-        message={toastMessage}
-        severity={isError ? "error" : "success"}
-        handleOnClose={handleCloseToast}
+        onSubmit={data => {}}
       />
     </div>
   );
 };
 
-export default ForgotPassword;
+export default UpdatePassword;

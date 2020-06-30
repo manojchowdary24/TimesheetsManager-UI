@@ -2,10 +2,6 @@ import React from "react";
 import Form from "../Form";
 import { FormInput, FormInputType } from "../Form/utils/validationSchema";
 
-interface Props {
-  navigateToLogin: () => void;
-}
-
 const CONTAINER_STYLES: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
@@ -49,7 +45,12 @@ const inputs: FormInput[] = [
   }
 ];
 
-const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
+interface Props {
+  email: string;
+  onSubmit: (email: string, data: any) => void;
+}
+
+const UpdatePassword: React.FC<Props> = ({ email, onSubmit }) => {
   return (
     <div style={CONTAINER_STYLES}>
       <Form
@@ -62,7 +63,7 @@ const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
         formStyles={FORM_STYLES}
         inputs={inputs}
         onSubmit={data => {
-          navigateToLogin();
+          return onSubmit(email, data);
         }}
       />
     </div>

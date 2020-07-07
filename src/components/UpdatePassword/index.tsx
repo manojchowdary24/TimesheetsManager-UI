@@ -1,9 +1,6 @@
 import React from "react";
-import Form from "../../components/Form";
-import {
-  FormInput,
-  FormInputType
-} from "../../components/Form/utils/validationSchema";
+import Form from "../Form";
+import { FormInput, FormInputType } from "../Form/utils/validationSchema";
 
 const CONTAINER_STYLES: React.CSSProperties = {
   display: "flex",
@@ -11,13 +8,6 @@ const CONTAINER_STYLES: React.CSSProperties = {
   alignItems: "center",
   height: "100vh",
   flexDirection: "column"
-};
-
-const LINK_CONTAINER_STYLES: React.CSSProperties = {
-  display: "flex",
-  justifyContent: "space-evenly",
-  width: "25%",
-  marginTop: "1rem"
 };
 
 const INPUT_STYLES: React.CSSProperties = {
@@ -30,10 +20,10 @@ const FORM_STYLES: React.CSSProperties = {
 
 const inputs: FormInput[] = [
   {
-    id: "username",
+    id: "token",
     type: FormInputType.text,
-    label: "Username",
-    name: "username",
+    label: "Token",
+    name: "token",
     style: INPUT_STYLES,
     validationType: FormInputType.text
   },
@@ -44,20 +34,23 @@ const inputs: FormInput[] = [
     name: "password",
     style: INPUT_STYLES,
     validationType: FormInputType.password
+  },
+  {
+    id: "passwordConfirm",
+    type: FormInputType.password,
+    label: "Confirm Password",
+    name: "confirm Password",
+    style: INPUT_STYLES,
+    validationType: FormInputType.confirmPassword
   }
 ];
 
-interface LoginProps {
-  onSubmit: (data: any) => void;
-  navigateToForgotPassword: () => void;
-  navigateToRequestAccess: () => void;
+interface Props {
+  email: string;
+  onSubmit: (email: string, data: any) => void;
 }
 
-const Login: React.FC<LoginProps> = ({
-  onSubmit,
-  navigateToForgotPassword,
-  navigateToRequestAccess
-}) => {
+const UpdatePassword: React.FC<Props> = ({ email, onSubmit }) => {
   return (
     <div style={CONTAINER_STYLES}>
       <Form
@@ -69,14 +62,12 @@ const Login: React.FC<LoginProps> = ({
         }}
         formStyles={FORM_STYLES}
         inputs={inputs}
-        onSubmit={onSubmit}
+        onSubmit={data => {
+          return onSubmit(email, data);
+        }}
       />
-      <div style={LINK_CONTAINER_STYLES}>
-        <a onClick={navigateToForgotPassword}>Update/Reset password</a>
-        <a onClick={navigateToRequestAccess}>Request Access</a>
-      </div>
     </div>
   );
 };
 
-export default Login;
+export default UpdatePassword;

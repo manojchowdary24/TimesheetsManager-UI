@@ -23,6 +23,7 @@ const inputs: FormInput[] = [
   {
     id: "email",
     type: FormInputType.email,
+    validationType: FormInputType.email,
     label: "Email",
     name: "emailId",
     style: INPUT_STYLES

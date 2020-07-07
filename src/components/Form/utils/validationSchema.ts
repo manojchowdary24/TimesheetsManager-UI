@@ -5,6 +5,7 @@ export enum FormInputType {
   text = "text",
   email = "email",
   password = "password",
+  confirmPassword = "confirmPassword"
 }
 
 export interface FormInput {
@@ -13,6 +14,7 @@ export interface FormInput {
   name: string;
   label: string;
   style?: React.CSSProperties;
+  validationType: FormInputType;
 }
 
 export const createFormSchema = (formInputs: FormInput[]) => {
@@ -22,8 +24,8 @@ export const createFormSchema = (formInputs: FormInput[]) => {
 export const mapInputsToSchema = (shape: FormInput[] = []) => {
   const formInputs: { [key: string]: yup.StringSchema<string> } = {};
 
-  shape.forEach(({ name, type }: FormInput) => {
-    formInputs[name] = mapInputToSchema(type);
+  shape.forEach(({ name, validationType }: FormInput) => {
+    formInputs[name] = mapInputToSchema(validationType);
   });
 
   return formInputs;
@@ -39,6 +41,13 @@ export const mapInputToSchema = (type: FormInputType) => {
         .required("Email is required");
     case FormInputType.password:
       return yup.string().required();
+    case FormInputType.confirmPassword:
+      return yup
+        .string()
+        .required()
+        .test("passwords-match", "Passwords must match", function(value) {
+          return this.parent[FormInputType.password] === value;
+        });
     case FormInputType.text:
       return yup
         .string()

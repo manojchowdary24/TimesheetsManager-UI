@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Application from "./routers/App";
+import Application from "./Routers/App";
 import { ApolloProvider } from "@apollo/react-hooks";
 import apolloClient from "./constants/graphql/client";
 import { persistCache } from "apollo-cache-persist";
@@ -17,7 +17,7 @@ const App: React.FC = () => {
       .then(() => {
         setClient(apolloClient);
       })
-      .catch((err) => setError(err));
+      .catch(err => setError(err));
   }, []);
 
   if (err) {

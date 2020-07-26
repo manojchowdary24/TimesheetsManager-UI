@@ -6,11 +6,13 @@ import LoginForm from "../../components/Login";
 interface Props {
   navigateToForgotPassword: () => void;
   navigateToRequestAccess: () => void;
+  navigateToUpdatePassword: () => void;
 }
 
 const Login: React.FC<Props> = ({
   navigateToForgotPassword,
   navigateToRequestAccess,
+  navigateToUpdatePassword
 }) => {
   const [login] = useMutation(LoginMutation, {
     ignoreResults: true,
@@ -18,14 +20,14 @@ const Login: React.FC<Props> = ({
       cache,
       {
         data: {
-          login: { accessToken = "" },
-        },
-      },
+          login: { accessToken = "" }
+        }
+      }
     ) => {
       cache.writeData({
-        data: { isAuthenicated: !!accessToken },
+        data: { isAuthenicated: !!accessToken }
       });
-    },
+    }
   });
 
   const onSubmit = (data: any) => login({ variables: { input: { ...data } } });
@@ -34,6 +36,7 @@ const Login: React.FC<Props> = ({
       onSubmit={onSubmit}
       navigateToForgotPassword={navigateToForgotPassword}
       navigateToRequestAccess={navigateToRequestAccess}
+      navigateToUpdatePassword={navigateToUpdatePassword}
     />
   );
 };

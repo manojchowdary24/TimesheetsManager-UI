@@ -51,12 +51,14 @@ interface LoginProps {
   onSubmit: (data: any) => void;
   navigateToForgotPassword: () => void;
   navigateToRequestAccess: () => void;
+  navigateToUpdatePassword: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({
   onSubmit,
   navigateToForgotPassword,
-  navigateToRequestAccess
+  navigateToRequestAccess,
+  navigateToUpdatePassword
 }) => {
   return (
     <div style={CONTAINER_STYLES}>
@@ -74,6 +76,7 @@ const Login: React.FC<LoginProps> = ({
       <div style={LINK_CONTAINER_STYLES}>
         <a onClick={navigateToForgotPassword}>Update/Reset password</a>
         <a onClick={navigateToRequestAccess}>Request Access</a>
+        <a onClick={navigateToUpdatePassword}>Update Password</a>
       </div>
     </div>
   );

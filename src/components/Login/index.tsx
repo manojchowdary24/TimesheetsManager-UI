@@ -76,7 +76,6 @@ const Login: React.FC<LoginProps> = ({
       <div style={LINK_CONTAINER_STYLES}>
         <a onClick={navigateToForgotPassword}>Update/Reset password</a>
         <a onClick={navigateToRequestAccess}>Request Access</a>
-        <a onClick={navigateToUpdatePassword}>Update Password</a>
       </div>
     </div>
   );

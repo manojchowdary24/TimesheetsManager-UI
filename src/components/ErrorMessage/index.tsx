@@ -1,16 +1,12 @@
 import React from "react";
-import red from "@material-ui/core/colors/red";
-
-const ERROR_MESSAGE_STYLES = {
-  color: red[500],
-};
+import { Typography } from "@material-ui/core";
 
 interface ErrorMessageProps {
   errorMessage: string;
 }
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ errorMessage }) => (
-  <p style={ERROR_MESSAGE_STYLES}>{errorMessage}</p>
+  <Typography color="error">{errorMessage}</Typography>
 );
 
 export default ErrorMessage;

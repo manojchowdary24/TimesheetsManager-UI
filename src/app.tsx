@@ -5,6 +5,8 @@ import apolloClient from "./constants/graphql/client";
 import { persistCache } from "apollo-cache-persist";
 import { BrowserRouter } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider, Paper } from "@material-ui/core";
+import theme from "./theme";
 
 const App: React.FC = () => {
   const [client, setClient] = useState(null);
@@ -27,11 +29,16 @@ const App: React.FC = () => {
   if (!client) {
     return <div>Loading...</div>;
   }
+
   return (
     <BrowserRouter>
       <ApolloProvider client={client}>
-        <CssBaseline />
-        <Application />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Paper>
+            <Application />
+          </Paper>
+        </ThemeProvider>
       </ApolloProvider>
     </BrowserRouter>
   );

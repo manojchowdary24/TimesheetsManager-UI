@@ -1,7 +1,8 @@
 import React from "react";
+import RequestAccessForm from "../../components/RequestAccess";
 
 const RequestAccess: React.FC = () => {
-  return <div>Request Access page</div>;
+  return <RequestAccessForm />;
 };
 
 export default RequestAccess;

@@ -32,7 +32,7 @@ const inputs: FormInput[] = [
     type: FormInputType.text,
     validationType: FormInputType.text,
     label: "Username",
-    name: "username",
+    name: "userName",
     style: INPUT_STYLES
   },
   {
@@ -53,7 +53,11 @@ const inputs: FormInput[] = [
   }
 ];
 
-const RequestAccess: React.FC = () => {
+interface RequestAccessProps {
+  onSubmit: (data: any) => void;
+}
+
+const RequestAccess: React.FC<RequestAccessProps> = ({ onSubmit }) => {
   return (
     <div style={CONTAINER_STYLES}>
       <Form
@@ -61,11 +65,14 @@ const RequestAccess: React.FC = () => {
           type: "submit",
           variant: "contained",
           color: "primary",
-          style: { marginTop: "1rem", width: "100%" }
+          style: {
+            marginTop: "1rem",
+            width: "100%"
+          }
         }}
         formStyles={FORM_STYLES}
         inputs={inputs}
-        onSubmit={d => console.log(d)}
+        onSubmit={onSubmit}
       />
     </div>
   );

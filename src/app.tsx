@@ -6,6 +6,7 @@ import { persistCache } from "apollo-cache-persist";
 import { BrowserRouter } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, Paper } from "@material-ui/core";
+import { ToastProvider } from "./context/Toast";
 import theme from "./theme";
 
 const App: React.FC = () => {
@@ -36,7 +37,9 @@ const App: React.FC = () => {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Paper>
-            <Application />
+            <ToastProvider>
+              <Application />
+            </ToastProvider>
           </Paper>
         </ThemeProvider>
       </ApolloProvider>

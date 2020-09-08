@@ -34,10 +34,10 @@ const ForgotPassword: React.FC = () => {
     forgotPassword({ variables: { emailId } });
   return (
     <ForgotPasswordForm
-      showToast={state.showToast}
-      toastMessage={state.message}
-      isError={state.isError}
-      handleCloseToast={handleCloseToast}
+      //      showToast={state.showToast}
+      //     toastMessage={state.message}
+      //    isError={state.isError}
+      //   handleCloseToast={handleCloseToast}
       onSubmit={onSubmit}
     />
   );

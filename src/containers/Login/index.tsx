@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import LoginMutation from "../../constants/graphql/mutations/login.graphql";
 import LoginForm from "../../components/Login";
+import client from "../../constants/graphql/client";
+import Toast from "../../components/Toast";
+import { ToastContext } from "../../context/Toast";
 
 interface Props {
   navigateToForgotPassword: () => void;
@@ -14,8 +17,15 @@ const Login: React.FC<Props> = ({
   navigateToRequestAccess,
   navigateToUpdatePassword
 }) => {
+  const { _, setToast } = useContext(ToastContext);
   const [login] = useMutation(LoginMutation, {
     ignoreResults: true,
+    onError: () =>
+      setToast({
+        isError: true,
+        showToast: true,
+        toastMessage: "Error"
+      }),
     update: (
       cache,
       {
@@ -25,19 +35,24 @@ const Login: React.FC<Props> = ({
       }
     ) => {
       cache.writeData({
-        data: { isAuthenicated: !!accessToken }
+        data: {
+          isAuthenicated: !!accessToken
+        }
       });
     }
   });
 
   const onSubmit = (data: any) => login({ variables: { input: { ...data } } });
   return (
-    <LoginForm
-      onSubmit={onSubmit}
-      navigateToForgotPassword={navigateToForgotPassword}
-      navigateToRequestAccess={navigateToRequestAccess}
-      navigateToUpdatePassword={navigateToUpdatePassword}
-    />
+    <>
+      <LoginForm
+        onSubmit={onSubmit}
+        navigateToForgotPassword={navigateToForgotPassword}
+        navigateToRequestAccess={navigateToRequestAccess}
+        navigateToUpdatePassword={navigateToUpdatePassword}
+      />
+      <Toast />
+    </>
   );
 };
 

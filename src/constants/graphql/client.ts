@@ -5,7 +5,7 @@ import clientState from "./resolvers";
 
 const { typeDefs, defaults: localState, resolvers } = clientState;
 
-const uri = "http://localhost:8080";
+const uri = "https://timesheets-manager.herokuapp.com";
 
 const setLocalState = () => {
   client.cache.writeData({ data: localState });

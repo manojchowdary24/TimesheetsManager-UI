@@ -1,46 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import ForgotPasswordForm from "../../components/ForgotPassword";
 import ForgotPasswordMutation from "../../constants/graphql/mutations/forgotPassword.graphql";
-
-const INITIAL_STATE = {
-  showToast: false,
-  message: "",
-  isError: false
-};
+import { ToastContext } from "../../context/Toast";
+import Toast from "../../components/Toast";
 
 const ForgotPassword: React.FC = () => {
-  const [state, setState] = useState(INITIAL_STATE);
-  const handleCloseToast = () => {
-    setState(INITIAL_STATE);
-  };
+  const { _, setToast } = useContext(ToastContext);
   const [forgotPassword] = useMutation(ForgotPasswordMutation, {
     ignoreResults: true,
     onCompleted: () =>
-      setState({
+      setToast({
+        isError: false,
         showToast: true,
-        message: "Email sent with Reset link, Please look into your email",
-        isError: false
+        toastMessage: "Please check your email to reset your password."
       }),
     onError: () =>
-      setState({
+      setToast({
+        isError: true,
         showToast: true,
-        message: "An error occurred.",
-        isError: true
+        toastMessage: "An error has occured."
       })
   });
 
   const onSubmit = ({ emailId }: { emailId: string }) =>
     forgotPassword({ variables: { emailId } });
-  return (
-    <ForgotPasswordForm
-      //      showToast={state.showToast}
-      //     toastMessage={state.message}
-      //    isError={state.isError}
-      //   handleCloseToast={handleCloseToast}
-      onSubmit={onSubmit}
-    />
-  );
+  return <ForgotPasswordForm onSubmit={onSubmit} />;
 };
 
 export default ForgotPassword;

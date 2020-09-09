@@ -13,7 +13,7 @@ const Toast: React.FC<ToastProps> = () => {
   const { toast, setToast } = useContext(ToastContext);
   const { showToast, toastMessage, isError } = toast || {};
 
-  const handleOnClose = () => setToast(null);
+  const handleOnClose = () => setToast({});
 
   return (
     <Snackbar

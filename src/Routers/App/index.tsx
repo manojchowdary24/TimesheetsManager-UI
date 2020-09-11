@@ -33,9 +33,6 @@ const AppRouter: React.FC = () => {
             navigateToRequestAccess={() => {
               history.push({ pathname: "/request-access" });
             }}
-            navigateToUpdatePassword={() =>
-              history.push({ pathname: "/update-password" })
-            }
           />
         )}
       />

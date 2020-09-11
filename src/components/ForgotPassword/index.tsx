@@ -32,19 +32,9 @@ const inputs: FormInput[] = [
 
 interface ForgotPasswordProps {
   onSubmit: (data: any) => void;
-  handleCloseToast: () => void;
-  showToast: boolean;
-  toastMessage: string;
-  isError: boolean;
 }
 
-const ForgotPassword: React.FC<ForgotPasswordProps> = ({
-  onSubmit,
-  showToast,
-  toastMessage,
-  isError,
-  handleCloseToast
-}) => {
+const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onSubmit }) => {
   return (
     <div style={CONTAINER_STYLES}>
       <Form
@@ -52,18 +42,16 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({
           type: "submit",
           variant: "contained",
           color: "primary",
-          style: { marginTop: "1rem", width: "100%" }
+          style: {
+            marginTop: "1rem",
+            width: "100%"
+          }
         }}
         formStyles={FORM_STYLES}
         inputs={inputs}
         onSubmit={onSubmit}
       />
-      <Toast
-        open={showToast}
-        message={toastMessage}
-        severity={isError ? "error" : "success"}
-        handleOnClose={handleCloseToast}
-      />
+      <Toast />
     </div>
   );
 };

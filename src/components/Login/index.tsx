@@ -4,6 +4,7 @@ import {
   FormInput,
   FormInputType
 } from "../../components/Form/utils/validationSchema";
+import Toast from "../Toast";
 
 const CONTAINER_STYLES: React.CSSProperties = {
   display: "flex",
@@ -51,14 +52,12 @@ interface LoginProps {
   onSubmit: (data: any) => void;
   navigateToForgotPassword: () => void;
   navigateToRequestAccess: () => void;
-  navigateToUpdatePassword: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({
   onSubmit,
   navigateToForgotPassword,
-  navigateToRequestAccess,
-  navigateToUpdatePassword
+  navigateToRequestAccess
 }) => {
   return (
     <div style={CONTAINER_STYLES}>
@@ -77,6 +76,7 @@ const Login: React.FC<LoginProps> = ({
         <a onClick={navigateToForgotPassword}>Update/Reset password</a>
         <a onClick={navigateToRequestAccess}>Request Access</a>
       </div>
+      <Toast />
     </div>
   );
 };

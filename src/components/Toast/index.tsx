@@ -1,49 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert, { AlertProps, Color } from "@material-ui/lab/Alert";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import { ToastContext } from "../../context/Toast";
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 interface ToastProps {
-  open: boolean;
-  message: string;
-  handleOnClose: () => void;
-  severity?: Color;
-  duration?: number;
-  variant?: AlertProps["variant"];
+  autoHideDuration?: number;
 }
 
-const Toast: React.FC<ToastProps> = ({
-  open,
-  severity,
-  message,
-  duration,
-  variant,
-  handleOnClose
-}) => {
-  //   useEffect(() => {
-  //     setIsOpen(open);
-  //   }, [open]);
+const Toast: React.FC<ToastProps> = ({ autoHideDuration = 3000 }) => {
+  const { toast, setToast } = useContext(ToastContext);
+  const { showToast, toastMessage, isError } = toast;
 
-  //   const handleOnClose = () => {
-  //     setIsOpen(false);
-  //   };
+  const handleOnClose = () => setToast({});
 
   return (
     <Snackbar
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      open={open}
-      autoHideDuration={duration || 3000}
+      open={showToast}
+      autoHideDuration={autoHideDuration}
       onClose={handleOnClose}
     >
       <Alert
         onClose={handleOnClose}
-        variant={variant || "filled"}
-        severity={severity || "success"}
+        variant={"filled"}
+        severity={isError ? "error" : "success"}
       >
-        {message}
+        {toastMessage}
       </Alert>
     </Snackbar>
   );

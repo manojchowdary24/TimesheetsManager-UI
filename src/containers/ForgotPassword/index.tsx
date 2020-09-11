@@ -3,7 +3,6 @@ import { useMutation } from "@apollo/react-hooks";
 import ForgotPasswordForm from "../../components/ForgotPassword";
 import ForgotPasswordMutation from "../../constants/graphql/mutations/forgotPassword.graphql";
 import { ToastContext } from "../../context/Toast";
-import Toast from "../../components/Toast";
 
 const ForgotPassword: React.FC = () => {
   const { _, setToast } = useContext(ToastContext);

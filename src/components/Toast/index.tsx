@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert, { AlertProps, Color } from "@material-ui/lab/Alert";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import { ToastContext } from "../../context/Toast";
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-interface ToastProps {}
+interface ToastProps {
+  autoHideDuration?: number;
+}
 
-const Toast: React.FC<ToastProps> = () => {
+const Toast: React.FC<ToastProps> = ({ autoHideDuration = 3000 }) => {
   const { toast, setToast } = useContext(ToastContext);
-  const { showToast, toastMessage, isError } = toast || {};
+  const { showToast, toastMessage, isError } = toast;
 
   const handleOnClose = () => setToast({});
 
@@ -19,7 +21,7 @@ const Toast: React.FC<ToastProps> = () => {
     <Snackbar
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={showToast}
-      autoHideDuration={3000}
+      autoHideDuration={autoHideDuration}
       onClose={handleOnClose}
     >
       <Alert

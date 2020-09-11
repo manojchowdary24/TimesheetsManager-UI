@@ -3,7 +3,6 @@ import { useQueryParameters } from "../../hooks/queryParameters";
 import { useMutation } from "@apollo/react-hooks";
 import UpdatePasswordMutation from "../../constants/graphql/mutations/updatePassword.graphql";
 import UpdatePasswordForm from "../../components/UpdatePassword";
-import { useLocation } from "react-router-dom";
 
 interface Props {
   navigateToLogin: () => void;
@@ -16,9 +15,7 @@ const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
     onCompleted: () => {
       navigateToLogin();
     },
-    onError: err => {
-      console.log("Handle error");
-    }
+    onError: () => {}
   });
   const onSubmit = (email: string, { token, password }: any) =>
     updatePassword({

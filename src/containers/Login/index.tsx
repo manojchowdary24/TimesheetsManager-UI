@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import LoginMutation from "../../constants/graphql/mutations/login.graphql";
 import LoginForm from "../../components/Login";
-import client from "../../constants/graphql/client";
 import Toast from "../../components/Toast";
 import { ToastContext } from "../../context/Toast";
 

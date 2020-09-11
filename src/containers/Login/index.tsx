@@ -2,19 +2,16 @@ import React, { useContext } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import LoginMutation from "../../constants/graphql/mutations/login.graphql";
 import LoginForm from "../../components/Login";
-import Toast from "../../components/Toast";
 import { ToastContext } from "../../context/Toast";
 
 interface Props {
   navigateToForgotPassword: () => void;
   navigateToRequestAccess: () => void;
-  navigateToUpdatePassword: () => void;
 }
 
 const Login: React.FC<Props> = ({
   navigateToForgotPassword,
-  navigateToRequestAccess,
-  navigateToUpdatePassword
+  navigateToRequestAccess
 }) => {
   const { _, setToast } = useContext(ToastContext);
   const [login] = useMutation(LoginMutation, {
@@ -48,9 +45,7 @@ const Login: React.FC<Props> = ({
         onSubmit={onSubmit}
         navigateToForgotPassword={navigateToForgotPassword}
         navigateToRequestAccess={navigateToRequestAccess}
-        navigateToUpdatePassword={navigateToUpdatePassword}
       />
-      <Toast />
     </>
   );
 };

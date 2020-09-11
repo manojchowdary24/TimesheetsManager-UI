@@ -18,7 +18,7 @@ const ForgotPassword: React.FC = () => {
       setToast({
         isError: true,
         showToast: true,
-        toastMessage: "An error has occured."
+        toastMessage: "There was an error. Please try again later"
       })
   });
 

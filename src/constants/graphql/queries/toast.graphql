@@ -1,5 +1,0 @@
-query Toast {
-  showToast @client
-  isError @client
-  toastMessage @client
-}

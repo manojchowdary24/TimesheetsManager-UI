@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "../Form";
 import { FormInput, FormInputType } from "../Form/utils/validationSchema";
+import Toast from "../Toast";
 
 const CONTAINER_STYLES: React.CSSProperties = {
   display: "flex",
@@ -50,6 +51,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onSubmit }) => {
         inputs={inputs}
         onSubmit={onSubmit}
       />
+      <Toast />
     </div>
   );
 };

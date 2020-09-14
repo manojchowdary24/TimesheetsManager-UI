@@ -1,29 +1,11 @@
 import React, { useContext } from "react";
-import { useMutation } from "@apollo/react-hooks";
 import ForgotPasswordForm from "../../components/ForgotPassword";
-import ForgotPasswordMutation from "../../constants/graphql/mutations/forgotPassword.graphql";
 import { ToastContext } from "../../context/Toast";
 
 const ForgotPassword: React.FC = () => {
   const { _, setToast } = useContext(ToastContext);
-  const [forgotPassword] = useMutation(ForgotPasswordMutation, {
-    ignoreResults: true,
-    onCompleted: () =>
-      setToast({
-        isError: false,
-        showToast: true,
-        toastMessage: "Please check your email to reset your password."
-      }),
-    onError: () =>
-      setToast({
-        isError: true,
-        showToast: true,
-        toastMessage: "There was an error. Please try again later"
-      })
-  });
 
-  const onSubmit = ({ emailId }: { emailId: string }) =>
-    forgotPassword({ variables: { emailId } });
+  const onSubmit = ({ emailId }: { emailId: string }) => console.log(emailId);
   return <ForgotPasswordForm onSubmit={onSubmit} />;
 };
 

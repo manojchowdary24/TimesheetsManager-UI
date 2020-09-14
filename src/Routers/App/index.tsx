@@ -2,22 +2,18 @@ import React from "react";
 import { Switch, Route, RouteComponentProps } from "react-router-dom";
 import App from "../../containers/App";
 import Login from "../../containers/Login";
-import { useQuery } from "@apollo/react-hooks";
-import IsAuthenticated from "../../constants/graphql/queries/isAuthenticated.graphql";
 import ForgotPassword from "../../containers/ForgotPassword";
 import RequestAccess from "../../containers/RequestAccess";
 import UpdatePassword from "../../containers/UpdatePassword";
 
 const AppRouter: React.FC = () => {
-  const { data: { isAuthenicated = false } = {}, client } = useQuery(
-    IsAuthenticated
-  );
+  const isAuthenicated = false;
   return isAuthenicated ? (
     <Switch>
       <Route
         exact
         path="/"
-        component={() => <App signOut={() => client.resetStore()} />}
+        component={() => <App signOut={() => console.log("signout")} />}
       />
     </Switch>
   ) : (
@@ -28,10 +24,14 @@ const AppRouter: React.FC = () => {
         component={({ history }: RouteComponentProps) => (
           <Login
             navigateToForgotPassword={() =>
-              history.push({ pathname: "/forgot-password" })
+              history.push({
+                pathname: "/forgot-password"
+              })
             }
             navigateToRequestAccess={() => {
-              history.push({ pathname: "/request-access" });
+              history.push({
+                pathname: "/request-access"
+              });
             }}
           />
         )}

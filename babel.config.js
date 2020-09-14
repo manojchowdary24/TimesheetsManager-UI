@@ -4,7 +4,7 @@ module.exports = {
   presets: [
     "@babel/preset-react",
     "@babel/preset-typescript",
-    "@babel/preset-env",
+    "@babel/preset-env"
   ],
   plugins: [
     [
@@ -14,12 +14,9 @@ module.exports = {
         alias: {
           components: "./src/components",
           constants: "./src/constants",
-          containers: "./src/containers",
-          graphql: "./src/constants/graphql",
-          mutations: "./src/constants/graphql/mutations",
-          queries: "./src/constants/graphql/queries",
-        },
-      },
-    ],
-  ],
+          containers: "./src/containers"
+        }
+      }
+    ]
+  ]
 };

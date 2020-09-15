@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import LoginForm from "../../components/Login";
+import { API_URI } from "../../constants";
 import { ToastContext } from "../../context/Toast";
+import { IsAuthenticatedContext } from "../../context/Authenication";
+import axios from "axios";
 
 interface Props {
   navigateToForgotPassword: () => void;
@@ -12,9 +15,21 @@ const Login: React.FC<Props> = ({
   navigateToRequestAccess
 }) => {
   const { _, setToast } = useContext(ToastContext);
+  const { __, setIsAuthenicated } = useContext(IsAuthenticatedContext);
 
-  const onSubmit = (data: any) =>
-    console.log({ variables: { input: { ...data } } });
+  const onSubmit = async (data: any) => {
+    try {
+      console.log("IN TRY");
+      await axios.post(`${API_URI}/auth/login`, data);
+      setIsAuthenicated({ isAuthenticated: true });
+    } catch (e) {
+      setToast({
+        showToast: true,
+        isError: true,
+        toastMessage: e.response.data.message || "An error occured"
+      });
+    }
+  };
   return (
     <>
       <LoginForm

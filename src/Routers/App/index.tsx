@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Switch, Route, RouteComponentProps } from "react-router-dom";
 import App from "../../containers/App";
 import Login from "../../containers/Login";
 import ForgotPassword from "../../containers/ForgotPassword";
 import RequestAccess from "../../containers/RequestAccess";
 import UpdatePassword from "../../containers/UpdatePassword";
+import { IsAuthenticatedContext } from "../../context/Authenication";
 
 const AppRouter: React.FC = () => {
-  const isAuthenicated = false;
-  return isAuthenicated ? (
+  const { isAuthenticated } = useContext(IsAuthenticatedContext);
+  console.log(isAuthenticated, "IN HERE APP ROUTER");
+  return isAuthenticated.isAuthenticated ? (
     <Switch>
       <Route
         exact

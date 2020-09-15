@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, Paper } from "@material-ui/core";
 import { ToastProvider } from "./context/Toast";
+import { IsAuthenticatedProvider } from "./context/Authenication";
 import theme from "./theme";
 
 const App: React.FC = () => {
@@ -13,7 +14,9 @@ const App: React.FC = () => {
         <CssBaseline />
         <Paper>
           <ToastProvider>
-            <Application />
+            <IsAuthenticatedProvider>
+              <Application />
+            </IsAuthenticatedProvider>
           </ToastProvider>
         </Paper>
       </ThemeProvider>

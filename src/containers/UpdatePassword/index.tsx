@@ -16,7 +16,7 @@ const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
     try {
       await axios.post(`${API_URI}/auth/${email}/updatePassword`, {
         token,
-        password
+        newPassword: password
       });
       setToast({
         showToast: true,

@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "../Form";
 import { FormInput, FormInputType } from "../Form/utils/validationSchema";
+import Toast from "../Toast";
 
 const CONTAINER_STYLES: React.CSSProperties = {
   display: "flex",
@@ -58,7 +59,10 @@ const UpdatePassword: React.FC<Props> = ({ email, onSubmit }) => {
           type: "submit",
           variant: "contained",
           color: "primary",
-          style: { marginTop: "1rem", width: "100%" }
+          style: {
+            marginTop: "1rem",
+            width: "100%"
+          }
         }}
         formStyles={FORM_STYLES}
         inputs={inputs}
@@ -66,6 +70,7 @@ const UpdatePassword: React.FC<Props> = ({ email, onSubmit }) => {
           return onSubmit(email, data);
         }}
       />
+      <Toast />
     </div>
   );
 };

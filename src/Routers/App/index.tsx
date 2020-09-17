@@ -8,14 +8,15 @@ import UpdatePassword from "../../containers/UpdatePassword";
 import { IsAuthenticatedContext } from "../../context/Authenication";
 
 const AppRouter: React.FC = () => {
-  const { isAuthenticated } = useContext(IsAuthenticatedContext);
-  console.log(isAuthenticated, "IN HERE APP ROUTER");
+  const { isAuthenticated, setIsAuthenicated } = useContext(
+    IsAuthenticatedContext
+  );
   return isAuthenticated ? (
     <Switch>
       <Route
         exact
         path="/"
-        component={() => <App signOut={() => console.log("signout")} />}
+        component={() => <App signOut={() => setIsAuthenicated(false)} />}
       />
     </Switch>
   ) : (

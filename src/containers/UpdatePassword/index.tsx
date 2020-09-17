@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { useQueryParameters } from "../../hooks/queryParameters";
-import { useMutation } from "@apollo/react-hooks";
-import UpdatePasswordMutation from "../../constants/graphql/mutations/updatePassword.graphql";
 import UpdatePasswordForm from "../../components/UpdatePassword";
 import { ToastContext } from "../../context/Toast";
+import axios from "axios";
+import { API_URI } from "../../constants";
 
 interface Props {
   navigateToLogin: () => void;
@@ -12,17 +12,19 @@ interface Props {
 const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
   const { _, setToast } = useContext(ToastContext);
   const queryParameters = useQueryParameters();
-  const [updatePassword] = useMutation(UpdatePasswordMutation, {
-    ignoreResults: true,
-    onCompleted: () => {
+  const onSubmit = async (email: string, { token, password }: any) => {
+    try {
+      await axios.post(`${API_URI}/auth/${email}/updatePassword`, {
+        token,
+        password
+      });
       setToast({
         showToast: true,
         isError: false,
         toastMessage: "Successfully updated your password."
       });
       navigateToLogin();
-    },
-    onError: () => {
+    } catch (e) {
       setToast({
         showToast: true,
         isError: true,
@@ -30,11 +32,7 @@ const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
           "There was an error updating your password. Please try again later."
       });
     }
-  });
-  const onSubmit = (email: string, { token, password }: any) =>
-    updatePassword({
-      variables: { email, input: { token, newPassword: password } }
-    });
+  };
   return (
     <UpdatePasswordForm
       email={queryParameters.get("email")}

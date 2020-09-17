@@ -1,29 +1,28 @@
 import React, { useContext } from "react";
-import { useMutation } from "@apollo/react-hooks";
 import ForgotPasswordForm from "../../components/ForgotPassword";
-import ForgotPasswordMutation from "../../constants/graphql/mutations/forgotPassword.graphql";
 import { ToastContext } from "../../context/Toast";
+import axios from "axios";
+import { API_URI } from "../../constants";
 
 const ForgotPassword: React.FC = () => {
   const { _, setToast } = useContext(ToastContext);
-  const [forgotPassword] = useMutation(ForgotPasswordMutation, {
-    ignoreResults: true,
-    onCompleted: () =>
-      setToast({
-        isError: false,
-        showToast: true,
-        toastMessage: "Please check your email to reset your password."
-      }),
-    onError: () =>
-      setToast({
-        isError: true,
-        showToast: true,
-        toastMessage: "There was an error. Please try again later"
-      })
-  });
 
-  const onSubmit = ({ emailId }: { emailId: string }) =>
-    forgotPassword({ variables: { emailId } });
+  const onSubmit = async ({ emailId }: { emailId: string }) => {
+    try {
+      await axios.post(`${API_URI}/auth/${emailId}/resetPassword`);
+      setToast({
+        showToast: true,
+        isError: false,
+        toastMessage: "Email sent with Reset link, Please look into your email"
+      });
+    } catch (e) {
+      setToast({
+        showToast: true,
+        isError: true,
+        toastMessage: e.response.data.message || "An error occured"
+      });
+    }
+  };
   return <ForgotPasswordForm onSubmit={onSubmit} />;
 };
 

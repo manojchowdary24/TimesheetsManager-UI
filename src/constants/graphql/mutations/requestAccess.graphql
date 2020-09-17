@@ -1,6 +1,0 @@
-mutation RequestAccess($input: RequestAccessInput!) {
-  requestAccess(input: $input)
-    @rest(type: "RequestAccess", path: "/auth/requestAccess", method: "POST") {
-    NoResponse
-  }
-}

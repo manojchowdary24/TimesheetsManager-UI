@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import LoginMutation from "../../constants/graphql/mutations/login.graphql";
 import LoginForm from "../../components/Login";
+import { API_URI } from "../../constants";
 import { ToastContext } from "../../context/Toast";
+import { IsAuthenticatedContext } from "../../context/Authenication";
+import axios from "axios";
 
 interface Props {
   navigateToForgotPassword: () => void;
@@ -14,31 +15,20 @@ const Login: React.FC<Props> = ({
   navigateToRequestAccess
 }) => {
   const { _, setToast } = useContext(ToastContext);
-  const [login] = useMutation(LoginMutation, {
-    ignoreResults: true,
-    onError: () =>
+  const { __, setIsAuthenicated } = useContext(IsAuthenticatedContext);
+
+  const onSubmit = async (data: any) => {
+    try {
+      await axios.post(`${API_URI}/auth/login`, data);
+      setIsAuthenicated(true);
+    } catch (e) {
       setToast({
-        isError: true,
         showToast: true,
-        toastMessage: "Error"
-      }),
-    update: (
-      cache,
-      {
-        data: {
-          login: { accessToken = "" }
-        }
-      }
-    ) => {
-      cache.writeData({
-        data: {
-          isAuthenicated: !!accessToken
-        }
+        isError: true,
+        toastMessage: e.response.data.message || "An error occured"
       });
     }
-  });
-
-  const onSubmit = (data: any) => login({ variables: { input: { ...data } } });
+  };
   return (
     <>
       <LoginForm

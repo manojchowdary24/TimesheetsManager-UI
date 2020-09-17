@@ -25,7 +25,6 @@ const UpdatePassword: React.FC<Props> = ({ navigateToLogin }) => {
       });
       navigateToLogin();
     } catch (e) {
-      console.log("CATCH");
       setToast({
         showToast: true,
         isError: true,

@@ -10,7 +10,7 @@ import { IsAuthenticatedContext } from "../../context/Authenication";
 const AppRouter: React.FC = () => {
   const { isAuthenticated } = useContext(IsAuthenticatedContext);
   console.log(isAuthenticated, "IN HERE APP ROUTER");
-  return isAuthenticated.isAuthenticated ? (
+  return isAuthenticated ? (
     <Switch>
       <Route
         exact

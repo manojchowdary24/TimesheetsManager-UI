@@ -1,22 +1,19 @@
 import React, { useState, createContext, useEffect } from "react";
 
-const INITIAL_STATE = {
-  isAuthenticated: false
-};
-
+const INITIAL_STATE = false;
 const localState = JSON.parse(localStorage.getItem("info"));
 
 export const IsAuthenticatedContext = createContext(null);
 
 export const IsAuthenticatedProvider = ({ children }: any) => {
   const localState = JSON.parse(localStorage.getItem("isAuthenticated"));
-  console.log(localState);
+  console.log("PROVIDED", localState, INITIAL_STATE);
   const [isAuthenticated, setIsAuthenicated] = useState(
     localState || INITIAL_STATE
   );
 
   useEffect(() => {
-    console.log("useEffect context", JSON.stringify(isAuthenticated));
+    console.log("Use effect", isAuthenticated);
     localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
   }, [isAuthenticated]);
 

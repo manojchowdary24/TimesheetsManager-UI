@@ -19,9 +19,8 @@ const Login: React.FC<Props> = ({
 
   const onSubmit = async (data: any) => {
     try {
-      console.log("IN TRY");
       await axios.post(`${API_URI}/auth/login`, data);
-      setIsAuthenicated({ isAuthenticated: true });
+      setIsAuthenicated(true);
     } catch (e) {
       setToast({
         showToast: true,

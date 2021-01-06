@@ -19,7 +19,7 @@ const Login: React.FC<Props> = ({
 
   const onSubmit = async (data: any) => {
     try {
-      await axios.post(`${API_URI}/auth/login`, data);
+      await axios.post(`${API_URI}/auth/login`, data, {withCredentials: true});
       setIsAuthenicated(true);
     } catch (e) {
       setToast({
